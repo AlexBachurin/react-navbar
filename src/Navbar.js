@@ -1,26 +1,35 @@
 import React from 'react'
-import { FaTwitter, FaInstagram, FaFacebookSquare } from 'react-icons/fa'
+import { FaTwitter, FaBars } from 'react-icons/fa'
+import { social, links } from './data'
 export default function Navbar() {
     return (
         <nav>
             <div className="nav-center">
                 <div className="nav-header">
                     <img src="https://res.cloudinary.com/dljezd6qv/image/upload/v1619820552/main-logo.png" alt="logo" className="logo" />
-
+                    <button className="nav-toggle"><FaBars /></button>
                 </div>
                 <div className="links-container">
                     <ul className="links">
-                        <li className="link"><a href="#">Home</a> </li>
-                        <li className="link"><a href="#">About</a></li>
-                        <li className="link"><a href="#">Projects</a></li>
-                        <li className="link"><a href="#">Profile</a></li>
-                        <li className="link"><a href="#">Contacts</a></li>
+                        {/* get links from data */}
+                        {links.map(({ id, url, text }) => {
+                            return (
+                                <li key={id} className="link">
+                                    <a href={url}>{text}</a>
+                                </li>
+                            )
+                        })}
                     </ul>
                 </div>
                 <ul className="social-icons">
-                    <li><a href="twitter.com"><FaTwitter /></a></li>
-                    <li><a href="facebook.com"><FaFacebookSquare /></a></li>
-                    <li><a href="instagram.com"><FaInstagram /></a></li>
+                    {/* get social icons from data */}
+                    {social.map(({ id, url, icon }) => {
+                        return (
+                            <li key={id} className="social-link">
+                                <a href={url}>{icon}</a>
+                            </li>
+                        )
+                    })}
                 </ul>
             </div>
         </nav>
